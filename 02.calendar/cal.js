@@ -14,11 +14,13 @@ const year = params.y
 const month = params.m
 
 // 表示する月を決める処理
-if ((month >= 1 && month <= 12) && (year >= 1970 && year <= 2100)) {
-  showYear = year
-  showMonth = month
-} else if ((month >= 1 && month <= 12) && !(year >= 1970 && year <= 2100)) {
-  showMonth = month
+if (Number.isInteger(month) && Number.isInteger(year)) {
+  if ((month >= 1 && month <= 12) && (year >= 1970 && year <= 2100)) {
+    showYear = year
+    showMonth = month
+  } else if ((month >= 1 && month <= 12) && !(year >= 1970 && year <= 2100)) {
+    showMonth = month
+  }
 }
 
 // タイトル（年月・曜日）出力
