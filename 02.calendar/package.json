@@ -1,4 +1,11 @@
 {
+  "scripts": {
+    "lint": "eslint --ext .js"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.5",
+    "minimist": "^1.2.6"
+  },
   "devDependencies": {
     "eslint": "^8.15.0",
     "eslint-config-standard": "^17.0.0",
