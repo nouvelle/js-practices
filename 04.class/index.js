@@ -6,8 +6,7 @@ const arg = process.argv[2]
 if (arg === '-l') {
   memo.showData()
 } else if (arg === '-r') {
-  console.log('参照')
-  // memo.viewSelect()
+  memo.viewSelect()
 } else if (arg === '-d') {
   console.log('削除')
   // memo.deleteSelect()

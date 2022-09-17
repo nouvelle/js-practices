@@ -3,7 +3,7 @@ class Database {
     this.db = db
   }
 
-  async showData () {
+  async getAllMemo () {
     return new Promise((resolve, reject) => {
       this.db.serialize(() => {
         this.db.all('SELECT * FROM memos', (err, row) => {
@@ -14,7 +14,7 @@ class Database {
     })
   }
 
-  addData (memo) {
+  addMemo (memo) {
     this.db.serialize(() => {
       this.db.run('CREATE TABLE if not exists memos(id INTEGER PRIMARY KEY AUTOINCREMENT, memo TEXT)')
       this.db.run('INSERT INTO memos( memo) values(?)', memo)
