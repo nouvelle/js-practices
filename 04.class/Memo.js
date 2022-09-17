@@ -65,6 +65,19 @@ class Memo {
       .catch(err => console.err(err))
   }
 
+  async editSelect () {
+    const allMemo = await database.getAllMemo()
+    const choices = allMemo.map(choice => choice.memo.split('\n')[0])
+    const prompt = new Select({
+      name: 'editMemos',
+      message: 'Choose a note you want to edit:',
+      choices
+    })
+    prompt.run()
+      .then(() => console.log('\n' + '機能実装中...'))
+      .catch(err => console.err(err))
+  }
+
   async addMemo () {
     const input = fs.readFileSync('/dev/stdin', 'utf8')
     if (input) await database.addMemo(input)

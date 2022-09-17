@@ -12,7 +12,7 @@ if (arg === '-l') {
 } else if (arg === '-D') {
   memo.deleteAll()
 } else if (arg === '-e') {
-  // memo.editSelect()
+  memo.editSelect()
 } else if (!arg) {
   memo.addMemo()
 }
