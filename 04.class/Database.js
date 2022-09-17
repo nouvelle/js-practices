@@ -18,6 +18,10 @@ class Database {
     this.db.run('DELETE FROM memos WHERE id = ?', id)
   }
 
+  deleteAllMemo () {
+    this.db.run('DROP table if exists memos')
+  }
+
   addMemo (memo) {
     this.db.serialize(() => {
       this.db.run('CREATE TABLE if not exists memos(id INTEGER PRIMARY KEY AUTOINCREMENT, memo TEXT)')

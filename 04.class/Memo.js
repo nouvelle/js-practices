@@ -1,6 +1,6 @@
 const fs = require('fs')
 const sqlite3 = require('sqlite3').verbose()
-const { Select } = require('enquirer')
+const { Select, Toggle } = require('enquirer')
 const Database = require('./Database')
 
 const db = new sqlite3.Database('./memo.db')
@@ -48,6 +48,19 @@ class Memo {
             break
           }
         }
+      })
+      .catch(err => console.err(err))
+  }
+
+  async deleteAll () {
+    const prompt = new Toggle({
+      message: 'Can I delete all notes?',
+      enabled: 'OK',
+      disabled: 'NO'
+    })
+    prompt.run()
+      .then(answer => {
+        if (answer) database.deleteAllMemo()
       })
       .catch(err => console.err(err))
   }

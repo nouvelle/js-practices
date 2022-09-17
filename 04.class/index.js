@@ -9,8 +9,9 @@ if (arg === '-l') {
   memo.viewSelect()
 } else if (arg === '-d') {
   memo.deleteSelect()
+} else if (arg === '-D') {
+  memo.deleteAll()
 } else if (arg === '-e') {
-  console.log('編集')
   // memo.editSelect()
 } else if (!arg) {
   memo.addMemo()
