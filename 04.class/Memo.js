@@ -8,13 +8,12 @@ const database = new Database(db)
 
 class Memo {
   async showData () {
-    const allMemo = await database.getAllMemo()
+    const { allMemo } = await this.#addMemo()
     allMemo.forEach(choice => console.log(choice.memo.split('\n')[0]))
   }
 
   async viewSelect () {
-    const allMemo = await database.getAllMemo()
-    const choices = allMemo.map(choice => choice.memo.split('\n')[0])
+    const { allMemo, choices } = await this.#addMemo()
     const prompt = new Select({
       name: 'viewMemos',
       message: 'Choose a note you want to see:',
@@ -33,8 +32,7 @@ class Memo {
   }
 
   async deleteSelect () {
-    const allMemo = await database.getAllMemo()
-    const choices = allMemo.map(choice => choice.memo.split('\n')[0])
+    const { allMemo, choices } = await this.#addMemo()
     const prompt = new Select({
       name: 'deleteMemos',
       message: 'Choose a note you want to delete:',
@@ -66,8 +64,7 @@ class Memo {
   }
 
   async editSelect () {
-    const allMemo = await database.getAllMemo()
-    const choices = allMemo.map(choice => choice.memo.split('\n')[0])
+    const { choices } = await this.#addMemo()
     const prompt = new Select({
       name: 'editMemos',
       message: 'Choose a note you want to edit:',
@@ -81,6 +78,12 @@ class Memo {
   async addMemo () {
     const input = fs.readFileSync('/dev/stdin', 'utf8')
     if (input) await database.addMemo(input)
+  }
+
+  async #addMemo () {
+    const allMemo = await database.getAllMemo()
+    const choices = allMemo.map(choice => choice.memo.split('\n')[0])
+    return { allMemo, choices }
   }
 }
 
