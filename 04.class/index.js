@@ -15,6 +15,5 @@ if (arg === '-l') {
   console.log('編集')
   // memo.editSelect()
 } else if (!arg) {
-  console.log('追加')
-  // memo.addMemo()
+  memo.addMemo()
 }

@@ -13,6 +13,13 @@ class Database {
       })
     })
   }
+
+  addData (memo) {
+    this.db.serialize(() => {
+      this.db.run('CREATE TABLE if not exists memos(id INTEGER PRIMARY KEY AUTOINCREMENT, memo TEXT)')
+      this.db.run('INSERT INTO memos( memo) values(?)', memo)
+    })
+  }
 }
 
 module.exports = Database
