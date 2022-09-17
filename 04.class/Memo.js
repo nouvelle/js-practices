@@ -32,6 +32,26 @@ class Memo {
       .catch(err => console.err(err))
   }
 
+  async deleteSelect () {
+    const allMemo = await database.getAllMemo()
+    const choices = allMemo.map(choice => choice.memo.split('\n')[0])
+    const prompt = new Select({
+      name: 'deleteMemos',
+      message: 'Choose a note you want to delete:',
+      choices
+    })
+    prompt.run()
+      .then(answer => {
+        for (let i = 0; i < allMemo.length; i++) {
+          if (answer === allMemo[i].memo.split('\n')[0]) {
+            database.deleteMemo(allMemo[i].id)
+            break
+          }
+        }
+      })
+      .catch(err => console.err(err))
+  }
+
   async addMemo () {
     const input = fs.readFileSync('/dev/stdin', 'utf8')
     if (input) await database.addMemo(input)

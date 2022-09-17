@@ -8,8 +8,7 @@ if (arg === '-l') {
 } else if (arg === '-r') {
   memo.viewSelect()
 } else if (arg === '-d') {
-  console.log('削除')
-  // memo.deleteSelect()
+  memo.deleteSelect()
 } else if (arg === '-e') {
   console.log('編集')
   // memo.editSelect()

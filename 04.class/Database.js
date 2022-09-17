@@ -14,6 +14,10 @@ class Database {
     })
   }
 
+  deleteMemo (id) {
+    this.db.run('DELETE FROM memos WHERE id = ?', id)
+  }
+
   addMemo (memo) {
     this.db.serialize(() => {
       this.db.run('CREATE TABLE if not exists memos(id INTEGER PRIMARY KEY AUTOINCREMENT, memo TEXT)')
